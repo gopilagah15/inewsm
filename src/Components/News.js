@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NewsItem from './NewsItem'; 
 
 export class News extends Component {
     articles=[ {
@@ -28,12 +29,29 @@ export class News extends Component {
         "content": "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]"
     }];
 
-  
+    constructor(){
+        super();
+        console.log('constructor called....');
+        this.state ={
+            articles: this.articles,
+            loading: false
+        }
+    }
+    
   render() {
     return (
-      <div>
-        
-      </div>
+     <div>
+        <div className="container my-3">
+            <div className="row">
+                {this.articles.map((e)=>{
+                    return   <div className="col-md-4">
+                      <NewsItem title={e.title} description={e.description} img={e.urlToImage} />
+                  </div>
+                })}
+              
+            </div>
+        </div>
+     </div>
     )
   }
 }
